@@ -71,23 +71,15 @@ var radius=8;
 var re_radius=8;
 var n=20;
 var step=Math.PI*2/n;
-var sky_vertices=[];
-var uv_faces=[];
+// var sky_vertices=[];
+// var uv_faces=[];
 var faces=[];
-
-
 
 for(var alpha=0, i=0; i<n; alpha+=Math.PI/2/n, i++, radius-=re_radius/4) {
     var z0=Math.sin(alpha)*re_radius;
     var z1=Math.sin(alpha+Math.PI/2/n)*re_radius;
-    // console.log(z0,z1);
-    // var z0=i;
-    // var z1=i+1;
     radius=Math.cos(alpha)*re_radius;
     var radius_next=Math.cos(alpha+Math.PI/2/n)*re_radius;
-    // var radius_next=radius-re_radius/4;
-    // var z0=i+1;
-    // var z1=i+2;
     var ty=i/n;
     var ty1=(i+1)/n;
 
@@ -104,7 +96,6 @@ for(var alpha=0, i=0; i<n; alpha+=Math.PI/2/n, i++, radius-=re_radius/4) {
 
         var tx = angle / Math.PI / 2;
         var tx_next = (angle + step) / Math.PI / 2;
-        // console.log(tx);
 
         sky.vertices.push(new THREE.Vector3(x0, y0, z0));
         sky.vertices.push(new THREE.Vector3(x1, y1, z0));
@@ -113,7 +104,6 @@ for(var alpha=0, i=0; i<n; alpha+=Math.PI/2/n, i++, radius-=re_radius/4) {
 
         sky.faces.push(new THREE.Face3(j, j + 1, j + 2));
         sky.faces.push(new THREE.Face3(j + 2, j + 1, j));
-        // sky.faces[sky.faces.length-1].vertexColors[0]=new THREE.Color(0xff0000);
         sky.faces.push(new THREE.Face3(j, j + 2, j + 3));
         sky.faces.push(new THREE.Face3(j + 3, j + 2, j));
 
@@ -123,75 +113,8 @@ for(var alpha=0, i=0; i<n; alpha+=Math.PI/2/n, i++, radius-=re_radius/4) {
         sky.faceVertexUvs[0].push(new Array(new THREE.Vector2(tx, ty1), new THREE.Vector2(tx_next, ty1), new THREE.Vector2(tx, ty)));
         console.log(i, j, angle);
     }
-
 }
-// for(var i=0, j=0; i<Math.PI*2; i+=step, j+=3){
-//     var x=Math.sin(i)*radius;
-//     var y=Math.cos(i)*radius;
-//     var z=0;
-//     var z_up=4;
-//     var x1=Math.sin(i+step)*radius;
-//     var y1=Math.cos(i+step)*radius;
-//     var z1=0;
-//     //------------------
-//     sky.vertices.push(
-//       new THREE.Vector3(x, y, z)
-//     );
-//     sky.vertices.push(
-//       new THREE.Vector3(x, y, z_up)
-//     );
-//     sky.vertices.push(
-//         new THREE.Vector3(x1, y1, z)
-//     );
-//     //------------------
-//     sky.faces.push(
-//         new THREE.Face3(j, j+1, j+2)
-//     );
-//     sky.faces.push(
-//         new THREE.Face3(j, j+1, j+2)
-//     );
-// //
-//     sky.faceVertexUvs[0].push(new Array( new THREE.Vector2(1,0), new THREE.Vector2(1,1), new THREE.Vector2(0,0)));
-//     // sky.faceVertexUvs[0].push(new Array( new THREE.Vector2(1,1), new THREE.Vector2(0,0), new THREE.Vector2(1,0)));
-//     // sky.faceVertexUvs[0].push(new Array( new THREE.Vector2(0,0), new THREE.Vector2(0,1), new THREE.Vector2(1,1)));
-//     // pyramidGeom.faceVertexUvs[0].push(new Array( new THREE.Vector2(0.5,0.5), new THREE.Vector2(1,0), new THREE.Vector2(1,1)));
-// }
-//
-// for(var i=0, j=30; i<Math.PI*2; i+=step, j+=3){
-//     var x=Math.sin(i)*radius;
-//     var y=Math.cos(i)*radius;
-//     var z=4;
-//
-//     var x1=Math.sin(i+step)*radius;
-//     var y1=Math.cos(i+step)*radius;
-//     var z1=4;
-//     //------------------
-//     sky.vertices.push(
-//         new THREE.Vector3(x1, y1, z1)
-//     );
-//     sky.vertices.push(
-//         new THREE.Vector3(x, y, z)
-//     );
-//     sky.vertices.push(
-//         new THREE.Vector3(x1, y1, 0)
-//     );
-//     //------------------
-//     sky.faces.push(
-//         new THREE.Face3(j, j+1, j)
-//     );
-//     sky.faces.push(
-//         new THREE.Face3(j, j+1, j+2)
-//     );
-// //
-//     sky.faceVertexUvs[0].push(new Array( new THREE.Vector2(0,1), new THREE.Vector2(1,1), new THREE.Vector2(1,0)));
-//     // pyramidGeom.faceVertexUvs[0].push(new Array( new THREE.Vector2(0.5,0.5), new THREE.Vector2(1,0), new THREE.Vector2(1,1)));
-// }
 
-// var ob=new THREE.Mesh(sky, material);
-// var ob=new THREE.Mesh(sky, skyMaterial);
-// ob.rotation.x=Math.PI/2;
-// scene.add(ob);
-//
 var squareMaterial = new THREE.MeshBasicMaterial({
     color:0xFFFFFF,
     side:THREE.DoubleSide
@@ -200,9 +123,9 @@ var squareMaterial = new THREE.MeshBasicMaterial({
 var squareMesh = new THREE.Mesh(sky, skyMaterial);
 squareMesh.position.set(1.5, 0.0, 4.0);
 squareMesh.rotation.x=-Math.PI/2;
-squareMesh.scale.x=20;
-squareMesh.scale.y=20;
-squareMesh.scale.z=10;
+squareMesh.scale.x=25;
+squareMesh.scale.y=25;
+squareMesh.scale.z=55;
 
 scene.add(squareMesh);
 
